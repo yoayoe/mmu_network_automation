@@ -3,6 +3,7 @@ from .models import Device, Log
 import paramiko
 from datetime import datetime
 import time
+from .forms import FormDevice
 
 def home(request):
     all_device = Device.objects.all()
@@ -114,3 +115,11 @@ def log(request):
         'logs' :logs
     }
     return render(request, 'log.html', context)
+
+def tambah_device(request):
+    form = FormDevice()
+
+    context = {
+        'form' : form
+    }
+    return render(request, 'tambah-device.html', context)
