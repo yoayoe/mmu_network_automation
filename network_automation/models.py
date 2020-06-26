@@ -31,7 +31,7 @@ class Device(models.Model):
     ip_address = models.CharField(max_length=255)
     hostname = models.CharField(max_length=255)
     username = models.CharField(max_length=255)
-    password = models.CharField(max_length=255)
+    password = models.CharField (max_length=255)
     ssh_port = models.IntegerField(default=22)
 
     VENDOR_CHOICES = (

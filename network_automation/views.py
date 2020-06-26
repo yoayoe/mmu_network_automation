@@ -110,16 +110,31 @@ def verify_config(request):
 
 def log(request):
     logs = Log.objects.all()
-
+    
     context = {
         'logs' :logs
     }
     return render(request, 'log.html', context)
 
 def tambah_device(request):
-    form = FormDevice()
+    if request.POST:
+        form = FormDevice(request.POST)
+        if form.is_valid():
+            form.save()
+            form = FormDevice()
+            pesan = "Add Success"
 
-    context = {
-        'form' : form
-    }
-    return render(request, 'tambah-device.html', context)
+            context = {
+                'form':form,
+                'pesan' : pesan,
+            }
+            return render(request, 'tambah_device.html', context)
+
+
+    else:
+        form = FormDevice()
+
+        context = {
+            'form' : form
+        }
+    return render(request, 'tambah_device.html', context)

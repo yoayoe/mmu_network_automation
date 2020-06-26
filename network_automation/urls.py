@@ -7,7 +7,7 @@ urlpatterns = [
     path('configure/', views.configure, name='configure'),
     path('verify_config/', views.verify_config, name='verify_config'),
     path('log/', views.log, name='log'),
-    path('tambah_device/', views.tambah_device, name='tambah-device')
+    path('tambah_device/', views.tambah_device, name='tambah_device')
 
     
 ]
