@@ -1,0 +1,24 @@
+{% extends "base-update.html" %}
+{% block content %}
+   <h1 class="mt-4">Add Device</h1>
+   
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                {% if pesan %}
+                <div class="alert alert-success">{{ pesan}}</div>
+
+                {% endif %}
+                <form action="" method="post">
+                    {% csrf_token %}
+                    
+
+                    {{ form.as_p }}
+                    
+                    <button class="btn btn-primary" type="submit">Add Device</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

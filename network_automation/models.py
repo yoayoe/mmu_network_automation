@@ -25,13 +25,13 @@ class Organisasi(models.Model):
     unit_layanan = models.CharField(null=True, max_length=255)
 
     def __str__(self):
-        return "{}. {}. {}".format(self.unit_induk, self.unit_pelaksana, self.unit_layanan)
+        return "{}".format(self.unit_layanan)
     
 class Device(models.Model):
     ip_address = models.CharField(max_length=255)
     hostname = models.CharField(max_length=255)
     username = models.CharField(max_length=255)
-    password = models.CharField(max_length=255)
+    password = models.CharField (max_length=255)
     ssh_port = models.IntegerField(default=22)
 
     VENDOR_CHOICES = (
