@@ -119,18 +119,25 @@ def log(request):
 def tambah_device(request):
     if request.POST:
         form = FormDevice(request.POST)
+        # try:
+        #     global dev
+        #     dev = get_object_or_404(Device)
+        #     dev = Device.objects.all()
         if form.is_valid():
-            form.save()
-            form = FormDevice()
-            pesan = "Add Success"
+                form.save()
+                form = FormDevice()
+                pesan = "Add Success"
 
-            context = {
-                'form':form,
-                'pesan' : pesan,
-            }
-            return render(request, 'tambah_device.html', context)
-
-
+                context = {
+                    'form':form,
+                    'pesan' : pesan,
+                }
+                return render(request, 'tambah_device.html', context)
+        #     log = Log(target=dev.ip_address, action="Add Device", status="Success", time=datetime.now(), messages= "No Error")
+        #     log.save()
+        # except Exception as e:
+        #     log = Log(target=dev.ip_address, action="Add Device", status="Eror", time=datetime.now(), messages=e)
+        #     log.save()
     else:
         form = FormDevice()
 

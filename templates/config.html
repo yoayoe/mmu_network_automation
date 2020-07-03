@@ -9,7 +9,7 @@
         
         <h4 class="mt-3">Chose Target:</h4>
         {% for device in devices %}
-            <input type="checkbox" name="device" value="{{ device.id }}">{{device.ip_address}} - {{device.vendor}} - {{device.lokasi_unit}}<br>
+            <input type="checkbox" name="device" value="{{ device.id }}">{{device.ip_address}} - {{device.vendor}} - {{device.unit_layanan}}<br>
         {% endfor %}
         
         <h4 class="mt-3">Mikrotik Command</h4>

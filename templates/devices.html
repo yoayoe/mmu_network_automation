@@ -3,14 +3,18 @@
     <h2 class="mt-4">Device List</h2>          
     <table class="table">
             <tr>
-                <th>Unit</th>
+                <th>Unit Induk</th>
+                <th>Unit Pelaksana</th>
+                <th>Unit Layanan</th>
                 <th>IP Address</th>
                 <th>Hostname</th>
                 <th>Vendor</th>
             </tr> 
             {% for device in all_device %}
             <tr>
-                <td>{{ device.lokasi_unit }}</td>
+                <td>{{ device.unit_induk }}</td>
+                <td>{{ device.unit_pelaksana }}</td>
+                <td>{{ device.unit_layanan }}</td>
                 <td>{{ device.ip_address }}</td>
                 <td>{{ device.hostname }}</td>
                 <td>{{ device.vendor }}</td>
