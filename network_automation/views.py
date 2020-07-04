@@ -5,6 +5,13 @@ from datetime import datetime
 import time
 from .forms import FormDevice
 
+def tes(request):
+    hello = "Hello Yoyok"
+    context ={
+        'helo' : hello
+    }
+    return render(request, 'ztes.html', context)
+
 def home(request):
     all_device = Device.objects.all()
     cisco_device = Device.objects.filter(vendor="cisco")
