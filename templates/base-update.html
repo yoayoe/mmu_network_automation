@@ -34,7 +34,9 @@
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-wrench"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">MMU NET AUTOMATION</div>
+        <div class="sidebar-brand-text mx-3">
+          MMU NET AUTOMATION
+        </div>
       </a>
 
       <!-- Divider -->
@@ -43,12 +45,22 @@
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
         <a class="nav-link" href="{% url 'home' %}">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Dashboard</span></a>
+          <i class="fas fa-fw fa-user"></i>
+          <span>Hallo, {{user}}</span></a>
       </li>
 
       <!-- Divider -->
-      <hr class="sidebar-divider">
+      <hr class="sidebar-divider my-0">
+
+      <!-- Nav Item - Dashboard -->
+      <li class="nav-item ">
+        <a class="nav-link" href="{% url 'home' %}">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>DASHBOARD</span></a>
+      </li>
+
+      <!-- Divider -->
+      <!-- <hr class="sidebar-divider"> -->
 
       <!-- Heading -->
       <!-- <div class="sidebar-heading">
@@ -129,35 +141,35 @@
       </li> -->
 
       <!-- Nav Item - Device -->
-      <li class="nav-item">
+      <li class="nav-item ">
         <a class="nav-link" href="{% url 'devices' %}">
           <i class="fas fa-fw fa-table"></i>
           <span>DEVICE LIST</span></a>
       </li>
 
       <!-- Nav Item - Device -->
-      <li class="nav-item">
+      <li class="nav-item ">
         <a class="nav-link" href="{% url 'tambah_device' %}">
           <i class="fas fa-fw fa-table"></i>
           <span>ADD DEVICE</span></a>
       </li>
 
       <!-- Nav Item - Tables -->
-      <li class="nav-item">
+      <li class="nav-item ">
         <a class="nav-link" href="{% url 'configure' %}">
           <i class="fas fa-fw fa-wrench"></i>
-          <span>CONFIGURATION</span></a>
+          <span>ADD CONFIGURATION</span></a>
       </li>
 
       <!-- Nav Item - Charts -->
-      <li class="nav-item">
+      <li class="nav-item ">
         <a class="nav-link" href="{% url 'verify_config' %}">
           <i class="fas fa-fw fa-wrench"></i>
           <span>VERIFY CONFIGURATION</span></a>
       </li>
 
       <!-- Nav Item - Charts -->
-      <li class="nav-item">
+      <li class="nav-item ">
         <a class="nav-link" href="{% url 'log' %}">
           <i class="fas fa-fw fa-table"></i>
           <span>LOG</span></a>
@@ -170,6 +182,16 @@
       <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>
       </div>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider my-0">
+
+      <!-- Nav Item - Dashboard -->
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'logout' %}">
+          <i class="fas fa-fw fa-sign-out-alt"></i>
+          <span>Logout<span></a>
+      </li>
 
     </ul>
     <!-- End of Sidebar -->
@@ -333,9 +355,11 @@
             <div class="topbar-divider d-none d-sm-block"></div> -->
 
             <!-- Nav Item - User Information -->
-            <!-- <li class="nav-item dropdown no-arrow">
-              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
+            <!-- <li class="nav-item dropdown no-arrow"> -->
+              <!-- <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {% if user.is.authenticated %}
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ user }}</a></span>
+                {% endif %}
                 <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
               </a> -->
               <!-- Dropdown - User Information -->
@@ -353,12 +377,12 @@
                   Activity Log
                 </a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                <a class="dropdown-item" href="{% url 'logout' %}" data-toggle="modal" data-target="#logoutModal">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                   Logout
                 </a>
-              </div>
-            </li> -->
+              </div> -->
+            <!-- </li> -->
 
           </ul>
 

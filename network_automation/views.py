@@ -4,6 +4,8 @@ import paramiko
 from datetime import datetime
 import time
 from .forms import FormDevice
+from django.contrib.auth.decorators import login_required
+from django.conf import settings
 
 def tes(request):
     hello = "Hello Yoyok"
@@ -12,6 +14,7 @@ def tes(request):
     }
     return render(request, 'ztes.html', context)
 
+@login_required(login_url=settings.LOGIN_URL)
 def home(request):
     all_device = Device.objects.all()
     cisco_device = Device.objects.filter(vendor="cisco")
@@ -26,6 +29,7 @@ def home(request):
     }
     return render(request, 'home.html', context)
 
+@login_required(login_url=settings.LOGIN_URL)
 def devices(request):
     all_device = Device.objects.all()
 
@@ -35,6 +39,7 @@ def devices(request):
 
     return render(request, 'devices.html', context)
 
+@login_required(login_url=settings.LOGIN_URL)
 def configure(request):
     if request.method == "POST":
         selected_device_id = request.POST.getlist('device')
@@ -71,6 +76,7 @@ def configure(request):
         }
         return render(request, 'config.html', context)
 
+@login_required(login_url=settings.LOGIN_URL)
 def verify_config(request):
     if request.method == "POST":
         resault = []
@@ -115,6 +121,7 @@ def verify_config(request):
         }
         return render(request, 'config.html', context)
 
+@login_required(login_url=settings.LOGIN_URL)
 def log(request):
     logs = Log.objects.all()
     
@@ -123,6 +130,7 @@ def log(request):
     }
     return render(request, 'log.html', context)
 
+@login_required(login_url=settings.LOGIN_URL)
 def tambah_device(request):
     if request.POST:
         form = FormDevice(request.POST)
