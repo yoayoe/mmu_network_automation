@@ -30,14 +30,16 @@ Aplikasi web berbasis Django untuk menginventarisasi perangkat jaringan Mikrotik
 - Python 3.7 atau lebih baru.
 - Pipenv, venv, atau alat manajemen virtual environment lain (opsional tapi direkomendasikan).
 - Akses ke repositori GitHub proyek ini.
+- Docker Desktop atau engine kompatibel (opsional, hanya bila ingin menggunakan kontainer).
 
-## Instalasi
+## Instalasi Lokal (Tanpa Docker)
 ```bash
 git clone <URL-repo-anda>
 cd mmu_network_automation
 python3 -m venv .venv
 source .venv/bin/activate        # Windows: .venv\Scripts\activate
-pip install "Django>=3,<4" paramiko
+pip install --upgrade pip
+pip install -r requirements.txt
 ```
 
 Tambahkan dependensi lain yang dibutuhkan oleh lingkungan Anda (mis. `python-dotenv` bila ingin menyembunyikan kredensial melalui env var).
@@ -58,12 +60,31 @@ Isi data referensi (`UnitInduk`, `UnitPelaksana`, `UnitLayanan`) dan perangkat (
 python manage.py shell
 ```
 
-## Menjalankan Aplikasi
+## Menjalankan Tanpa Docker
 ```bash
 python manage.py runserver
 ```
 
 Aplikasi dapat diakses pada `http://127.0.0.1:8000/`. Semua halaman (kecuali login) memerlukan autentikasi; setelah login Anda akan dialihkan ke dashboard.
+
+## Menjalankan Dengan Docker
+1. Build image:
+   ```bash
+   docker build -t mmu-network-automation .
+   ```
+2. Jalankan migrasi (opsional `createsuperuser` menggunakan pola yang sama):
+   ```bash
+   docker run --rm -it mmu-network-automation python manage.py migrate
+   docker run --rm -it mmu-network-automation python manage.py createsuperuser
+   ```
+3. Start aplikasi:
+   ```bash
+   docker run --rm -it -p 8000:8000 mmu-network-automation
+   ```
+
+Aplikasi tersedia di `http://127.0.0.1:8000/`. Gunakan `CTRL+C` untuk menghentikan kontainer saat menjalankan mode interaktif.
+
+> **Catatan:** Basis data SQLite berada di dalam kontainer. Gunakan volume (`-v $(pwd)/db.sqlite3:/app/db.sqlite3`) jika ingin mempertahankan data antar container run.
 
 ## Alur Otomasi
 1. **Tambah perangkat** di menu *Add Device*. Pastikan informasi vendor, IP, dan kredensial SSH benar.
@@ -88,6 +109,8 @@ mmu_network_automation/
 ├─ network_automation/              # Aplikasi utama (models, views, forms, urls)
 ├─ templates/                       # Template HTML (dashboard, devices, form konfigurasi, dsb.)
 ├─ static/                          # Asset SB Admin 2 (CSS, JS, gambar, vendor)
+├─ requirements.txt                 # Daftar dependensi Python
+├─ Dockerfile                       # Definisi image Docker
 └─ db.sqlite3                       # Basis data default (SQLite)
 ```
 
@@ -108,4 +131,3 @@ mmu_network_automation/
 
 ## Lisensi
 Belum ditentukan. Tambahkan ketentuan lisensi sesuai kebijakan organisasi Anda.
-
