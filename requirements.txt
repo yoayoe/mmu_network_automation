@@ -1,2 +1,2 @@
-Django>=3,<4
-paramiko>=2.7,<3
+Django>=4.2.16,<5
+paramiko>=3.4,<4
